@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>SIP CALCULATOR</title>
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+  </script>
+  <style>
+
+.wrap {
+  width: 300px;
+  margin-top: -20%;
+  /* margin-left: 15%;   */
+  margin: auto;
+  /* padding-right: -10px; */
+  transform: translate(-50%, -50%);
+}
+
+.range0 {
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+.range0::-ms-tooltip {
+  display: none;
+}
+
+.track {
+  width: 100%;
+  height: 4px;
+  background: #DDDDDD;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.track-inner{
+  width: 0;
+  height: 100%;
+  background: #E24F4F;
+}
+
+.thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  box-shadow: 10px 10px 8px #000000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0%, -50%);
+  pointer-events: none;
+}
+
+
+</style>
+
+
+<style>
+
+    .wrap1 {
+      width: 300px;
+      /* padding: 10px; */
+      /* margin-left: 15%;   */
+      margin: auto;
+      
+      transform: translate(-50%, -50%);
+    }
+    
+    .range1 {
+      width: 100%;
+      cursor: pointer;
+      opacity: 0;
+    }
+    .range1::-ms-tooltip {
+      display: none;
+    }
+    
+    .track1 {
+      width: 100%;
+      height: 4px;
+      background: #DDDDDD;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .track-inner1{
+      width: 0;
+      height: 100%;
+      background: #E24F4F;
+    }
+    
+    .thumb1 {
+      width: 16px;
+      height: 16px;
+      background: #ffffff;
+      box-shadow: 10px 10px 8px #000000;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0%, -50%);
+      pointer-events: none;
+    }
+    
+    
+    </style>
+
+
+
+<style>
+
+    .wrap2 {
+      width: 300px;
+      /* padding: 10px; */
+      margin: auto;      
+      transform: translate(-50%, -50%);
+    }
+    
+    .range2 {
+      width: 100%;
+      cursor: pointer;
+      opacity: 0;
+    }
+    .range2::-ms-tooltip {
+      display: none;
+    }
+    
+    .track2 {
+      width: 100%;
+      height: 4px;
+      background: #DDDDDD;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .track-inner2{
+      width: 0;
+      height: 100%;
+      background: #E24F4F;
+    }
+    
+    .thumb2 {
+      width: 16px;
+      height: 16px;
+      background: #ffffff;
+      box-shadow: 10px 10px 8px #000000;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0%, -50%);
+      pointer-events: none;
+    }
+    
+    
+    </style>
+  
+  <body style="background-color: #100056;">
+
+  
+
+    
+    
+    
+    
+      
+
+
+<!----------------------------------------------------------->
+
+
+
+
+<div>
+  <h2 style="color: white; font-family: 'Montserrat', sans-serif; margin-left: 2%; margin-top: 2%;"> SIP CALCULATOR</h2>
+</div>
+
+
+
+
+<div style="margin-top: -5%;">
+
+  <div style="display: inline-block; margin-top: -15%; margin-left: 0.1px; margin-right: auto;">
+    <div id="piechart" ></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+    <script type="text/javascript">
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      
+      // Draw the chart and set the chart values
+      function drawChart() {
+        
+        var a2=Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*Math.ceil(parseInt(sessionStorage.getItem("value2"),10)*0.3)*12;
+        // var a1 = 12
+        var a3=Math.ceil(Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),(Math.ceil((parseInt(sessionStorage.getItem("value2"),10)*0.3))*12))-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)));
+        var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Invested',a2],
+        ['Surplus', a3-a2],
+        
+      ]);
+      
+        // Optional; add a title and set the width and height of the chart
+        var options = {
+        title: '',
+        width: 570,
+        height: 415,
+        responsive: true,
+        pieHole: 0.4,
+        
+        backgroundColor: '#100056',
+        // is3D: true,
+        titleTextStyle: {
+            color: "black",   
+            fontName: 'Montserrat',  // any HTML string color ('red', '#cc00cc')
+            // fontName: <string>, // i.e. 'Times New Roman'
+            // fontSize: <number>, // 12, 18 whatever you want (don't specify px)
+            // bold: <boolean>,    // true or false
+            // italic: <boolean>   // true of false
+        },
+    
+        
+        legend: {
+          textStyle: {
+            color: 'white',
+            fontName: 'Montserrat', 
+          }
+        },
+        // legend: 'none',
+        //       pieSliceText: 'label',
+        //       pieSliceTextStyle: {
+        //         color: 'white',
+        //         fontSize: 15,
+        //       },
+        // slices: {  1: {offset: 0.3},
+        //                 2: {offset: 0.2},
+                        
+        //       },
+    
+    };
+      
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+        // this.pieChartData.dataTable[1][1] = 100;
+        // this.cchart.wrapper.setDataTable(this.pieChartData.dataTable);
+        // this.cchart.redraw();
+      }
+      </script> 
+    
+    
+    
+    
+    
+    
+    </div>  
+  <div style="display: inline-block; margin-left: 10%; margin-top: 10%">
+
+
+<div>
+  <div class="wrap" style="display: block;">
+      <input type="range" class="range0" min="1" max="100" step="1" value="0" id="r">
+      <div class="track">
+        <div class="track-inner"></div>
+      </div>
+      <div class="thumb"></div>
+    </div>
+      
+      <div style=" display : block; margin-left: -43%; padding-bottom: 20px; ">
+      <p style="color: white; font-size: 20px; box-shadow: 10px 10x 10px black; font-family: 'Montserrat'">Monthly Investment: <span id="demo" style="display:inline-block; color:#b12323; background-color: #d1baba; min-width: 80px; text-align: right; font-weight: 150px; font-size: 20; padding-right: 5px; box-shadow: 10px 10x 8px black; "></span></p>
+      </div>
+</div>
+
+
+<script>
+  
+  const range0 = document.querySelector('.range0')
+const thumb = document.querySelector('.thumb')
+const track = document.querySelector('.track-inner')
+
+const updateSlider0 = (value, future, invested) => {
+thumb.style.left = `${value}%`
+thumb.style.transform = `translate(-${value}%, -50%)`
+track.style.width = `${value}%`
+var output = document.getElementById("demo");
+output.innerHTML = "₹"+numberWithCommas(value*500);
+// future = value+value2+value3;()
+sessionStorage.setItem("value", value);
+future = Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),(Math.ceil((parseInt(sessionStorage.getItem("value2"),10)*0.3))*12))-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200));
+
+
+var output3 = document.getElementById("demo3");
+output3.innerHTML = "₹"+numberWithCommas(Math.ceil(future));
+
+
+invested  = Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*Math.ceil(parseInt(sessionStorage.getItem("value2"),10)*0.3)*12;
+var output4 = document.getElementById("demo4");
+output4.innerHTML = "₹"+numberWithCommas(Math.ceil(invested));
+}
+
+range0.oninput = (e) =>{
+updateSlider0(e.target.value)
+drawChart()
+drawAreaChart()
+}
+
+
+updateSlider0(50) // Init value 
+
+  // slider.oninput = function() {
+  //     output.innerHTML = this.value;
+  // } 
+</script>
+
+
+
+<div>
+  
+  <div class="wrap1" style="display: block;">
+      <input type="range" class="range1" min="1" max="100" step="0.3333" value="0" id="r1">
+      <div class="track1">
+        <div class="track-inner1"></div>
+      </div>
+      <div class="thumb1"></div>
+    </div>
+      
+      <div style=" display : block;  margin-left: -43%; padding-bottom: 20px;">
+      <p style="color: white; font-size: 20px; font-family: 'Montserrat'">Expected Return Rate: <span1 id="demo1" style="display:inline-block; color:#b12323; background-color: #d1baba; min-width: 80px; text-align: right; font-weight: 150px; font-size: 20; padding-right: 5px;"></span1></p>
+      </div>
+</div>
+
+
+<script>
+  const range1 = document.querySelector('.range1')
+const thumb1 = document.querySelector('.thumb1')
+const track1 = document.querySelector('.track-inner1')
+
+const updateSlider1 = (value1, future, invested) => {
+thumb1.style.left = `${value1}%`
+thumb1.style.transform = `translate(-${value1}%, -50%)`
+track1.style.width = `${value1}%`
+var output1 = document.getElementById("demo1");
+output1.innerHTML = numberWithCommas(Math.ceil(value1*0.3))+"%";
+// future = future+value1+value2+value3;
+sessionStorage.setItem("value1", value1);
+future = Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),(Math.ceil((parseInt(sessionStorage.getItem("value2"),10)*0.3))*12))-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200));
+
+
+var output3 = document.getElementById("demo3");
+output3.innerHTML = "₹"+numberWithCommas(Math.ceil(future));
+
+
+invested  = Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*Math.ceil(parseInt(sessionStorage.getItem("value2"),10)*0.3)*12;
+var output4 = document.getElementById("demo4");
+output4.innerHTML = "₹"+numberWithCommas(Math.ceil(invested));
+
+}
+
+
+
+
+range1.oninput = (e1) =>{
+updateSlider1(e1.target.value)
+drawChart()
+drawAreaChart()
+}
+
+
+updateSlider1(50) // Init value 
+
+  // slider.oninput = function() {
+  //     output.innerHTML = this.value;
+  // } 
+</script>
+
+
+
+
+
+<div>
+    <div class="wrap2" style="display:block;">
+        <input type="range" class="range2" min="1" max="100" step="0.333" value="0" id="r2" >
+        <div class="track2">
+          <div class="track-inner2"></div>
+        </div>
+        <div class="thumb2"></div>
+      </div>
+        
+        <div style=" display :block;  margin-left: -43%; padding-bottom: 10px; ">
+        <p style="color: white; font-size: 20px; font-family: 'Montserrat'">Time Period: <span2 id="demo2" style="display:inline-block; color:#b12323; background-color: #d1baba; min-width: 80px; text-align: right; font-weight: 150px; font-size: 20; padding-right: 5px;"></span2></p>
+        </div>
+  </div>
+  <script>
+    const range2 = document.querySelector('.range2')
+const thumb2 = document.querySelector('.thumb2')
+const track2 = document.querySelector('.track-inner2')
+
+
+
+const updateSlider2 = (value2, future, invested) => {
+thumb2.style.left = `${value2}%`
+thumb2.style.transform = `translate(-${value2}%, -50%)`
+track2.style.width = `${value2}%`
+var output1 = document.getElementById("demo2");
+output1.innerHTML = numberWithCommas(Math.ceil(value2*0.3))+" Yrs";
+
+// future = future+value2+value1+value3;
+sessionStorage.setItem("value2", value2);
+future = Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),(Math.ceil((parseInt(sessionStorage.getItem("value2"),10)*0.3))*12))-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200));
+
+
+
+var output3 = document.getElementById("demo3");
+output3.innerHTML = "₹"+numberWithCommas(Math.ceil(future));
+
+
+invested  = Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*Math.ceil(parseInt(sessionStorage.getItem("value2"),10)*0.3)*12;
+var output4 = document.getElementById("demo4");
+output4.innerHTML = "₹"+numberWithCommas(Math.ceil(invested));
+
+}
+
+
+
+range2.oninput = (e2) =>{
+updateSlider2(e2.target.value)
+drawChart()
+drawAreaChart()
+}
+
+updateSlider2(50) // Init value 
+
+    // slider.oninput = function() {
+    //     output.innerHTML = this.value;
+    // } 
+</script>
+
+
+<br>
+<hr style="width:100%;height: 2px;margin-left:-43%; color: white;"> 
+<br>
+
+<p style="color: white; font-size: 20px;  margin-left: -43%;box-shadow: 10px 10x 10px black; font-family: 'Montserrat'">Total Value: <span  id="demo3" style="display:inline-block; color:#b12323; background-color: #d1baba; min-width: 180px; text-align: right; font-weight: 150px; font-size: 20; padding-right: 5px; box-shadow: 10px 10x 8px black;"></span></p>
+
+<p style="color: white; font-size: 20px;  margin-left: -43%;box-shadow: 10px 10x 10px black; font-family: 'Montserrat'">Invested Amount: <span  id="demo4" style="display:inline-block; color:#b12323; background-color: #d1baba; min-width: 135px; text-align: right; font-weight: 150px; font-size: 20; padding-right: 5px; box-shadow: 10px 10x 8px black;"></span></p>
+<script>
+  var output3 = document.getElementById("demo3");
+  output3.innerHTML = '₹16,921,578';
+  var output4 = document.getElementById("demo4");
+  output4.innerHTML = '₹4,500,000';
+</script>
+
+  </div>
+  <div style="display: inline-block; margin: auto; margin-top: 7%;">
+    <div id="chart_div" style="width: 100%; height: 500px; "></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawAreaChart);
+  
+      function drawAreaChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Value', 'Surplus','Investment'],
+          ['1', Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((1))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)), Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((1))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)) - Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*1*12 ,Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*1*12],
+          ['2',  Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((2))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)), Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((2))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)) - Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*2*12 ,Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*2*12],
+          ['3',  Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((3))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)), Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((3))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)) - Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*3*12 ,Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*3*12],
+          ['4',  Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((4))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)), Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((4))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)) - Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*4*12 ,Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*4*12],
+          ['5',  Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((5))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)), Math.ceil((parseInt(sessionStorage.getItem("value"),10)*500))*((Math.pow((1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3)))/1200),((5))*12)-1)/(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200))*(1+(Math.ceil((parseInt(sessionStorage.getItem("value1"),10)*0.3))/1200)) - Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*5*12 ,Math.ceil(parseInt(sessionStorage.getItem("value"),10)*500)*5*12],
+        ]);
+  
+        var options = {
+          title: 'Next 5 Year Returns',
+          backgroundColor: 'White',
+          is3D: true,
+          
+          
+          legend: {textStyle: {
+          color: 'Black',
+          fontName: 'Montserrat', 
+        },position: 'top', maxLines: 3},
+          
+
+
+
+          vAxis: {minValue: 0},
+          width: 400,
+          height: 510,
+          titleTextStyle: {
+          color: "Black",  
+          fontName: 'Montserrat',  // any HTML string color ('red', '#cc00cc')
+          // fontName: <string>, // i.e. 'Times New Roman'
+          // fontSize: <number>, // 12, 18 whatever you want (don't specify px)
+          // bold: <boolean>,    // true or false
+          // italic: <boolean>   // true of false
+      },
+      //     legend: {
+      //   textStyle: {
+      //     color: 'Black',
+      //   }
+      // },
+        };
+        
+
+
+        
+  
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  
+    
+    
+    
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+  </body>
+
+</html>
